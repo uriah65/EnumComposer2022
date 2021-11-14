@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+	<Metadata>
+		<Identity Id="EnumComposer_2022.1df9dbe7-5188-43bc-badf-23b1d7b1d829" Version="1.0" Language="en-US" Publisher="Victor Cherniavsky" />
+		<DisplayName> Enum Composer 2022</DisplayName>
+		<Description xml:space="preserve">Generates and update C# enumerations using data from a MS SQL Server, ODBC or OLEDB data sources.</Description>
+		<MoreInfo>https://github.com/uriah65/EnumComposer/wiki</MoreInfo>
+		<License>Resources\License_EnumComposer.txt</License>
+		<ReleaseNotes>Resources\License_EnumComposer.txt</ReleaseNotes>
+	</Metadata>
+	<Installation>
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+	</Installation>
+	<Dependencies>
+		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+	</Dependencies>
+	<Prerequisites>
+		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
+	</Prerequisites>
+	<Assets>
+		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+	</Assets>
+</PackageManifest>
