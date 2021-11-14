@@ -47,6 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Config Reader\ConfigReaderVsp.cs" />
+    <Compile Include="EnumComposerCommand.App.cs" />
     <Compile Include="EnumComposerCommand.cs" />
     <Compile Include="EnumLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

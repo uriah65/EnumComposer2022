@@ -1,5 +1,6 @@
 ﻿using EnumComposer;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,9 @@ namespace EnumComposer_2022
 
         public void WriteLine(string format, params object[] arguments)
         {
-            Guid generalPaneGuid = VSConstants.GUID_OutWindowDebugPane;//.GUID_OutWindowGeneralPane;
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            Guid generalPaneGuid = VSConstants.GUID_OutWindowDebugPane;
             IVsOutputWindowPane outputPane;
             _outputWindow.GetPane(ref generalPaneGuid, out outputPane);
             if (outputPane != null)
@@ -34,7 +37,8 @@ namespace EnumComposer_2022
                 {
                     message += format;
                 }
-                outputPane.OutputString(message);
+                //outputPane.OutputString(message);
+                outputPane.OutputStringThreadSafe(message);
                 outputPane.Activate();
             }
         }

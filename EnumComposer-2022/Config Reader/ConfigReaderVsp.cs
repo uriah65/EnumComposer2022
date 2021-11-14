@@ -1,4 +1,5 @@
 ﻿using EnumComposer;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Configuration;
 using System.Text.RegularExpressions;
@@ -11,11 +12,15 @@ namespace EnumComposerVSIX
 
         public ConfigReaderVsp(EnvDTE.Project project)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             _configFilePath = FindProjectConfigurationFile(project);
         }
 
         public static string FindProjectConfigurationFile(EnvDTE.Project project)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             foreach (EnvDTE.ProjectItem item in project.ProjectItems)
             {
                 if (Regex.IsMatch(item.Name, "(app|web).config", RegexOptions.IgnoreCase))
@@ -25,16 +30,6 @@ namespace EnumComposerVSIX
             }
 
             return null;
-        }
-
-        public Tuple<string, string> GetConnectionString(string connectionStringName)
-        {
-            if (_configFilePath == null)
-            {
-                return null;
-            }
-
-            return ExtractConnectionString(_configFilePath, connectionStringName);
         }
 
         public Tuple<string, string> ExtractConnectionString(string configFilePath, string connectionStringName)
@@ -52,6 +47,16 @@ namespace EnumComposerVSIX
             }
 
             return null;
+        }
+
+        public Tuple<string, string> GetConnectionString(string connectionStringName)
+        {
+            if (_configFilePath == null)
+            {
+                return null;
+            }
+
+            return ExtractConnectionString(_configFilePath, connectionStringName);
         }
     }
 }
